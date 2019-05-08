@@ -6,13 +6,17 @@
  * @return {JSON} JSON、JSONPを返す
  */
 function doGet(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('LGTM'),
-      lastRow = sheet.getLastRow(),
-      randomValue = createRandomValue(lastRow);
+  // シート情報を取得する
+  var targetSheet = (!e.parameter.sheet) ? 'LGTM' : e.parameter.sheet;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(targetSheet);
+  
+  // 対象行の取得
+  // idの指定がある時はidから取得する（idの時は+1する）
+  var targetRow = (!e.parameter.id) ? createRandomValue(sheet.getLastRow()) : (parseInt(e.parameter.id, 10) + 1);
 
   // LGTM画像のURL、説明情報を取得する
-  var lgtmImageUrl = sheet.getRange("B" + randomValue).getValue(),
-      description = sheet.getRange("C" + randomValue).getValue();
+  var lgtmImageUrl = sheet.getRange("B" + targetRow).getValue(),
+      description = sheet.getRange("C" + targetRow).getValue();
   
   // レスポンス用のデータを作成する
   var response = {
