@@ -1,13 +1,14 @@
-# LGTM自動生成
+# LGTM自動生成ツール
 
 ## 概要
 
-LGTMする時、自分の好きな画像でLGTM用の文言を自動生成してくれるツールです。  
+LGTMする時、自分の好きな画像でLGTM用の文言をブックマークレットとGASを使用し自動生成してくれるツールです。   
 Googleスプレッドシートに設定した画像からランダムでLGTM用の文言を自動生成しクリップボードにコピーします。
+実行すると右下にクリップボードにコピーされた画像を表示してくれます。  
 
 ![sample_create_LGTM](/image/sample_create_LGTM.gif)
 
-実行するとクリップボードに下記のようなものがコピーされます。
+実行するとクリップボードに下記のようなものがコピーされますのでそのまま貼り付けて使用します。
 
 ```markdown
 # LGTM
@@ -20,6 +21,7 @@ Googleスプレッドシートに設定した画像からランダムでLGTM用�
 ### GoogleスプレッドシートにLGTMで使用する画像の設定
 
 新規でGoogleスプレッドシートを作成します。
+シート名は`LGTM`にしてください。
 GoogleスプレッドシートにLGTMで使用したい画像のURLを設定します。
 
 ![sample_spreadsheet](/image/sample_spreadsheet.png)
@@ -58,6 +60,83 @@ Webアプリケーションとして公開する
 
 [https://github.com/dodonki1223/CreateLGTM/blob/master/bookmarklet.js](https://github.com/dodonki1223/CreateLGTM/blob/master/bookmarklet.js)のソースをコピーし[２行目](https://github.com/dodonki1223/CreateLGTM/blob/2a6c9c8718ab620ac78bc34884947dbe92b7bf62/bookmarklet.js#L2)のURLの部分を先程コピーした`現在のウェブアプリケーションのURL`に書き換えたのちブックマークレットとして保存すれば設定完了です。
 
+```JavaScript
+javascript:(function(){
+  const GAS_API_URL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec';
+
+  let script = document.createElement('script');
+  script.src = GAS_API_URL + '?callback=copyLgtm';
+  document.body.appendChild(script);
+  document.body.removeChild(script);
+
+  window.copyLgtm = function(data) {
+    let json = JSON.stringify(data);
+    let jsonParse = JSON.parse(json);
+
+    execCopy(jsonParse.data.lgtm);
+    displayCopyImg(jsonParse.data.lgtm_url, jsonParse.data.description);
+  };
+
+  window.execCopy = function(string) {
+    let copyElement = document.createElement('div');
+    copyElement.style.cssText = 'position: fixed; right: 200%;';
+
+    let pre = document.createElement('pre');
+    pre.style.cssText = '-webkit-user-select: auto; user-select: auto;';
+
+    copyElement.appendChild(pre).textContent = string;
+
+    document.body.appendChild(copyElement);
+    document.getSelection().selectAllChildren(copyElement);
+    document.execCommand('copy');
+
+    document.body.removeChild(copyElement);
+  };
+
+  window.displayCopyImg = function(lgtmImgUrl, description) {
+    let displayElement = document.createElement('div');
+    displayElement.style.cssText = 'position: fixed; bottom: 1%; right: 1%; z-index: 9999;';
+
+    let p = document.createElement('p');
+    p.textContent = description;
+    p.style.cssText = 'position: absolute; top: 0; left: 0.5em; margin: 0; color :white; font-weight: bold;';
+    displayElement.appendChild(p);
+
+    let img = document.createElement('img');
+    img.src = lgtmImgUrl;
+    img.style.width = (window.parent.screen.width * 0.2) + 'px';
+    displayElement.appendChild(img);
+
+    document.body.appendChild(displayElement);
+
+    setTimeout(function() {
+      document.body.removeChild(displayElement);
+    }, 3000);
+  };
+})();
+```
+
+### 特定の画像を指定する
+
+URLパラメータにシート名やIDを指定することで特定の画像を指定してLGTMの文言を作成することができます。  
+
+[https://github.com/dodonki1223/CreateLGTM/blob/bc64d09d7997d17117878362dfea4409336432d8/bookmarklet.js#L5](https://github.com/dodonki1223/CreateLGTM/blob/bc64d09d7997d17117878362dfea4409336432d8/bookmarklet.js#L5)の箇所にURLパラメータを追加することで特定の画像を指定することができます。
+
+修正前
+
+```JavaScript
+  script.src = GAS_API_URL + '?callback=copyLgtm';
+```
+
+修正後
+
+```JavaScript
+  script.src = GAS_API_URL + '?callback=copyLgtm&sheet=interesting&id=2';
+```
+
+この場合ですと、`interesting`シートの`id`が２の画像でLGTMの文言を作成してくれます。
+sheetの指定が無いと`LGTM`のシートが選択されます。また`id`の指定が無いとランダムに選択される仕様になっています。
+
 ## その他
 
 githubだと下記のようなエラーが出て使用できません。
@@ -66,3 +145,5 @@ github以外でブックマークレットを使用して下さい。
 ```
 VM154:1 Refused to load the script 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxx/exec?callback=copyLgtm' because it violates the following Content Security Policy directive: "script-src github.githubassets.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
 ```
+
+これはどうしたら良いのだろうか……🤔
