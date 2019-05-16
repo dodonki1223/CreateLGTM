@@ -27,13 +27,14 @@ GoogleスプレッドシートにLGTMで使用したい画像のURLを設定し�
 ![sample_spreadsheet](/image/sample_spreadsheet.png)
 
 下記のような感じでGoogleスプレッドシートを埋めます。
+image列は別に設定しなくても良いです。必要なのはID〜description列までです。
 
-| ID  |  URL             | description       |
-|:----|:----------------:|:-----------------:|
-| 1   |  LGTM画像１のURL |  LGTM画像１の説明 |
-| 2   |  LGTM画像２のURL |  LGTM画像２の説明 |
-| 3   |  LGTM画像３のURL |  LGTM画像３の説明 |
-| 4   |  LGTM画像４のURL |  LGTM画像４の説明 |
+| ID  |  URL             | description       | image       |
+|:----|:----------------:|:-----------------:|:-----------:|
+| 1   |  LGTM画像１のURL |  LGTM画像１の説明 | =IMAGE(B2)  |
+| 2   |  LGTM画像２のURL |  LGTM画像２の説明 | =IMAGE(B3)  |
+| 3   |  LGTM画像３のURL |  LGTM画像３の説明 | =IMAGE(B4)  |
+| 4   |  LGTM画像４のURL |  LGTM画像４の説明 | =IMAGE(B5)  |
 
 ### Googleスプレッドシートの内容をJSONで取得できるようにする
 
