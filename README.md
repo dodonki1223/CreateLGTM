@@ -146,5 +146,5 @@ github以外でブックマークレットを使用して下さい。
 VM154:1 Refused to load the script 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxx/exec?callback=copyLgtm' because it violates the following Content Security Policy directive: "script-src github.githubassets.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
 ```
 
-これはどうしたら良いのだろうか……🤔
+これはどうしたら良いのだろうか……🤔  
 githubはブックマークレットを実行できないようだ
