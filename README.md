@@ -13,7 +13,7 @@ Googleスプレッドシートに設定した画像からランダムでLGTM用�
 ```markdown
 # LGTM
 
-![LGTM](https://media2.giphy.com/media/EtFNtaj8sQKuA/giphy.gif?cid=e1bb72ff5c9057fd6276716c552fafa2)
+![ポプテピピック（俺だ俺だ俺だ）](https://media2.giphy.com/media/EtFNtaj8sQKuA/giphy.gif?cid=e1bb72ff5c9057fd6276716c552fafa2)
 ```
 
 ## 使い方
@@ -147,3 +147,4 @@ VM154:1 Refused to load the script 'https://script.google.com/macros/s/xxxxxxxxx
 ```
 
 これはどうしたら良いのだろうか……🤔
+githubはブックマークレットを実行できないようだ

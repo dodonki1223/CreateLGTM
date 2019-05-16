@@ -21,7 +21,7 @@ function doGet(e) {
   // レスポンス用のデータを作成する
   var response = {
     data: { lgtm_url: lgtmImageUrl,
-            lgtm: createLgtm(lgtmImageUrl),
+            lgtm: createLgtm(lgtmImageUrl, description),
             description: description},
     meta: { status: 'success' }
   };
@@ -57,12 +57,13 @@ function createRandomValue(lastRow) {
  * MarkDown用のLGTM文字列を作成する
  * 見出しとLGTM画像の表示のみの文章を作成し返す
  * @param {String} [imageUrl] - LGTM画像のURL
+ * @param {String} [description] - 画像の説明
  * @return {String} LGTM用のマークダウン文字列
  */
-function createLgtm(imageUrl) {
+function createLgtm(imageUrl, description) {
   return '# LGTM' + '\n' +
          '' + '\n' +
-         '![LGTM](' + imageUrl + ')';
+         '![' + description + '](' + imageUrl + ')';
 }
 
 /**
