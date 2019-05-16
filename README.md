@@ -140,7 +140,7 @@ sheetの指定が無いと`LGTM`のシートが選択されます。また`id`�
 ## その他
 
 githubだと下記のようなエラーが出て使用できません。
-github以外でブックマークレットを使用して下さい。
+github以外でブックマークレットを使用して下さい！
 
 ```
 VM154:1 Refused to load the script 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxx/exec?callback=copyLgtm' because it violates the following Content Security Policy directive: "script-src github.githubassets.com". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
