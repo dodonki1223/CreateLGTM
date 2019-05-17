@@ -14,7 +14,7 @@ javascript:(function(){
     displayCopyImg(jsonParse.data.lgtm_url, jsonParse.data.description);
   };
 
-  window.execCopy = function(string) {
+  window.execCopy = string => {
     let copyElement = document.createElement('div');
     copyElement.style.cssText = 'position: fixed; right: 200%;';
 
@@ -30,7 +30,7 @@ javascript:(function(){
     document.body.removeChild(copyElement);
   };
 
-  window.displayCopyImg = function(lgtmImgUrl, description) {
+  window.displayCopyImg = (lgtmImgUrl, description) => {
     let displayElement = document.createElement('div');
     displayElement.style.cssText = 'position: fixed; bottom: 1%; right: 1%; z-index: 9999;';
 
@@ -45,9 +45,6 @@ javascript:(function(){
     displayElement.appendChild(img);
 
     document.body.appendChild(displayElement);
-
-    setTimeout(function() {
-      document.body.removeChild(displayElement);
-    }, 3000);
+    setTimeout(() => document.body.removeChild(displayElement), 3000);
   };
 })();
