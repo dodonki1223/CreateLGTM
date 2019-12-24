@@ -17,11 +17,14 @@ function doGet(e) {
   // LGTM画像のURL、説明情報を取得する
   var lgtmImageUrl = sheet.getRange("B" + targetRow).getValue(),
       description = sheet.getRange("C" + targetRow).getValue();
+      
+  // プログラマが知るべき９９のコトの情報を取得する
+  var thankYouWord = buildThankYouWord();
   
   // レスポンス用のデータを作成する
   var response = {
     data: { lgtm_url: lgtmImageUrl,
-            lgtm: createLgtm(lgtmImageUrl, description),
+            lgtm: createLgtm(lgtmImageUrl, description, thankYouWord),
             description: description},
     meta: { status: 'success' }
   };
@@ -58,12 +61,29 @@ function createRandomValue(lastRow) {
  * 見出しとLGTM画像の表示のみの文章を作成し返す
  * @param {String} [imageUrl] - LGTM画像のURL
  * @param {String} [description] - 画像の説明
+ * @param {String} [thankYouWord] - プログラマが知るべき９９のコト情報
  * @return {String} LGTM用のマークダウン文字列
  */
-function createLgtm(imageUrl, description) {
+function createLgtm(imageUrl, description, thankYouWord) {
   return '# LGTM' + '\n' +
-         '' + '\n' +
+         '' + '\n' + 
+         '[プログラマが知るべき97のこと](' + 'https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/' + ') - ' + thankYouWord +
+         '\n' + '\n' +
          '![' + description + '](' + imageUrl + ')';
+}
+
+/**
+ * プログラマが知るべき97のことをランダムで生成する
+ * MarkDown用のURLを生成して返す
+ * @return {String} URLのマークダウン文字列
+ */
+function buildThankYouWord() {  
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('プログラマが知るべき97のこと');
+  var targetRow = createRandomValue(sheet.getLastRow());
+  var url         = sheet.getRange("C" + targetRow).getValue();
+  var description = sheet.getRange("B" + targetRow).getValue();
+  
+  return "[" + description + "](" + url + ")";
 }
 
 /**
