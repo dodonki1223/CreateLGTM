@@ -55,11 +55,11 @@ image列は別に設定しなくても良いです。必要なのはID〜descrip
 | 8   | ボーイスカウト-ルール                                | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B9))   |
 | 9   | 他人よりまず自分を疑う                               | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B10))  |
 | 10  | ツールの選択は慎重に                                 | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B11))  |
-| 11  | ドメインの言葉を使ったコード                         | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B12))  |
-| 12  | コードは設計である                                   | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B13))  |
-| 13  | コードレイアウトの重要性                             | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B14))  |
+| 11  | ドメインの言葉を使ったコード                         | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B12))  |
+| 12  | コードは設計である                                   | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B13))  |
+| 13  | コードレイアウトの重要性                             | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B14))  |
 | 14  | コードレビュー                                       | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B15))  |
-| 15  | コードの論理的検証                                   | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B16))  |
+| 15  | コードの論理的検証                                   | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B16))  |
 | 16  | コメントについてのコメント                           | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B17))  |
 | 17  | コードに書けないことのみをコメントにする             | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B18))  |
 | 18  | 学び続ける姿勢                                       | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B19))  |
@@ -152,6 +152,7 @@ image列は別に設定しなくても良いです。必要なのはID〜descrip
 | 105 | 育ちのよいコード                                     | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B106)) |
 | 106 | Noといえることの大事さ                               | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B107)) |
 | 107 | 名前重要                                             | =CONCATENATE("https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/",ENCODEURL(B108)) |
+
 ### Googleスプレッドシートの内容をJSONで取得できるようにする
 
 Googleスプレッドシートからスクリプトエディタを開きます。
