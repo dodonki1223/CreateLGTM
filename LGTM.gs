@@ -18,13 +18,13 @@ function doGet(e) {
   var lgtmImageUrl = sheet.getRange("B" + targetRow).getValue(),
       description = sheet.getRange("C" + targetRow).getValue();
       
-  // プログラマが知るべき９９のコトの情報を取得する
-  var thankYouWord = buildThankYouWord();
+  // プログラマが知るべき９９のコト, The Twelve-Factor Appの情報を取得する
+  var message = buildMessage();
   
   // レスポンス用のデータを作成する
   var response = {
     data: { lgtm_url: lgtmImageUrl,
-            lgtm: createLgtm(lgtmImageUrl, description, thankYouWord),
+            lgtm: createLgtm(lgtmImageUrl, description, message),
             description: description},
     meta: { status: 'success' }
   };
@@ -61,13 +61,13 @@ function createRandomValue(lastRow) {
  * 見出しとLGTM画像の表示のみの文章を作成し返す
  * @param {String} [imageUrl] - LGTM画像のURL
  * @param {String} [description] - 画像の説明
- * @param {String} [thankYouWord] - プログラマが知るべき９９のコト情報
+ * @param {String} [message] - プログラマが知るべき９９のコト, The Twelve-Factor Appのメッセージ
  * @return {String} LGTM用のマークダウン文字列
  */
-function createLgtm(imageUrl, description, thankYouWord) {
+function createLgtm(imageUrl, description, message) {
   return '# LGTM' + '\n' +
          '' + '\n' + 
-         '[プログラマが知るべき97のこと](' + 'https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/' + ') - ' + thankYouWord +
+         message +
          '\n' + '\n' +
          '![' + description + '](' + imageUrl + ')';
 }
@@ -87,6 +87,37 @@ function buildThankYouWord() {
 }
 
 /**
+ * メッセージを作成する
+ * メッセージを生成して返す
+ * @return {String} メッセージとURLを合算したもの
+ */
+function buildMessage() {
+  var isEven = Math.floor(Math.random()*10) % 2;
+  var sheet;
+
+  if (isEven === 0) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('プログラマが知るべき97のこと');
+    return '[プログラマが知るべき97のこと](' + 'https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/' + ') - ' + buildUrl(sheet);
+  } else {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('TheTwelve-FactorApp');
+    return '[The Twelve-Factor App](' + 'https://12factor.net/ja/' + ') - ' + buildUrl(sheet);
+  }
+}
+
+/**
+ * MardDown用のURLを生成する
+ * MarkDown用のURLを生成して返す
+ * @return {String} URLのマークダウン文字列
+ */
+function buildUrl(sheet) {
+  var targetRow = createRandomValue(sheet.getLastRow());
+  var url         = sheet.getRange("C" + targetRow).getValue();
+  var description = sheet.getRange("B" + targetRow).getValue();
+  
+  return "[" + description + "](" + url + ")";
+}
+
+/**
  * デバッグ用メソッド
  * 動作が正しいか確認するようのデバッグメソッド
  * ログを確認し正しい価を取得できているか確認できます
@@ -98,11 +129,13 @@ function debug() {
   Logger.log('最終行：' + lastRow);
 
   var lgtmImageUrl = sheet.getRange("B" + randomValue).getValue(),
-      description  = sheet.getRange("C" + randomValue).getValue();
-  
+      description  = sheet.getRange("C" + randomValue).getValue(),
+      message      = buildMessage();
+
+
   var response = {
     data: { lgtm_url: lgtmImageUrl,
-            lgtm: createLgtm(lgtmImageUrl),
+            lgtm: createLgtm(lgtmImageUrl, description, message),
             description: description},
     meta: { status: 'success' }
   };
